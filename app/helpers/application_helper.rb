@@ -7,4 +7,8 @@ module ApplicationHelper
   def h1
     @h1 ||= controller.controller_name.titleize
   end
+
+  def subtitle
+    @subtitle ||= ""
+  end
 end

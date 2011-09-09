@@ -9,10 +9,13 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'haml-rails'
 gem 'jquery-rails'
 
 group :development do
   gem 'powder'
+  gem 'hpricot'
+  gem 'ruby_parser'
   gem 'ruby-debug19', :require => 'ruby-debug'
 end
 

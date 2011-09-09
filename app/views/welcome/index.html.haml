@@ -1,0 +1,170 @@
+- @h1 = APPLICATION_NAME
+- @subtitle = TAGLINE
+
+#masthead
+
+%section
+  - unless flash.blank? or flash.nil?
+    = render "shared/flash", :flash => flash
+
+  = link_to "Confirmation (Error)", "http://google.com", :class => "btn danger", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Error"
+  = link_to "Confirmation (Warning)", "http://google.com", :class => "btn", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Warning"
+  = link_to "Confirmation (Notice)", "http://google.com", :class => "btn notice", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Notice"
+  = link_to "Confirmation (Success)", "http://google.com", :class => "btn success", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Success"
+
+%section#what
+  .page-header
+    %h2
+      What is Feng Shui?
+      %small It's not that I'm lazy. It's that I just don't care.
+  .row
+    .span6.columns
+      %h3 History
+      %p In the earlier days of Twitter, engineers used almost any library they were familiar with to meet front-end requirements. Bootstrap began as an answer to the challenges that presented and development quickly accelerated during Twitter’s first Hackweek.
+      %p With the help and feedback of many engineers at Twitter, Bootstrap has grown significantly to encompass not only basic styles, but more elegant and durable front-end design patterns.
+      %p
+        Read more on
+        %a{:href => "https://dev.twitter.com/blog/bootstrap-twitter"} dev.twitter.com ›
+    .span5.columns
+      %h3 Browser support
+      %p Bootstrap is tested and supported in major modern browsers like Chrome, Safari, Internet Explorer, and Firefox.
+      %ul
+        %li Latest Safari
+        %li Latest Google Chrome
+        %li Firefox 4+
+        %li Internet Explorer 7+
+        %li Opera 11
+    .span5.columns
+      %h3 What's included
+      %p Bootstrap comes complete with compiled CSS, uncompiled, and example templates.
+      %ul
+        %li All original .less files
+        %li Fully compiled and minified CSS
+        %li Complete styleguide documentation
+        %li Example page template (more to come soon)
+
+%section#why
+  .page-header
+    %h2
+      Why would I use Feng Shui?
+      %small Ribs. I had ribs for lunch, that's why I'm doing this.
+  .row
+    .span6.columns
+      %h3 History
+      %p In the earlier days of Twitter, engineers used almost any library they were familiar with to meet front-end requirements. Bootstrap began as an answer to the challenges that presented and development quickly accelerated during Twitter’s first Hackweek.
+      %p With the help and feedback of many engineers at Twitter, Bootstrap has grown significantly to encompass not only basic styles, but more elegant and durable front-end design patterns.
+      %p
+        Read more on
+        %a{:href => "https://dev.twitter.com/blog/bootstrap-twitter"} dev.twitter.com ›
+    .span5.columns
+      %h3 Browser support
+      %p Bootstrap is tested and supported in major modern browsers like Chrome, Safari, Internet Explorer, and Firefox.
+      %ul
+        %li Latest Safari
+        %li Latest Google Chrome
+        %li Firefox 4+
+        %li Internet Explorer 7+
+        %li Opera 11
+    .span5.columns
+      %h3 What's included
+      %p Bootstrap comes complete with compiled CSS, uncompiled, and example templates.
+      %ul
+        %li All original .less files
+        %li Fully compiled and minified CSS
+        %li Complete styleguide documentation
+        %li Example page template (more to come soon)
+
+%section#how
+  .page-header
+    %h2
+      How do I use Feng Shui?
+      %small This is our concern, Dude.
+  .row
+    .span6.columns
+      %h3 History
+      %p In the earlier days of Twitter, engineers used almost any library they were familiar with to meet front-end requirements. Bootstrap began as an answer to the challenges that presented and development quickly accelerated during Twitter’s first Hackweek.
+      %p With the help and feedback of many engineers at Twitter, Bootstrap has grown significantly to encompass not only basic styles, but more elegant and durable front-end design patterns.
+      %p
+        Read more on
+        %a{:href => "https://dev.twitter.com/blog/bootstrap-twitter"} dev.twitter.com ›
+    .span5.columns
+      %h3 Browser support
+      %p Bootstrap is tested and supported in major modern browsers like Chrome, Safari, Internet Explorer, and Firefox.
+      %ul
+        %li Latest Safari
+        %li Latest Google Chrome
+        %li Firefox 4+
+        %li Internet Explorer 7+
+        %li Opera 11
+    .span5.columns
+      %h3 What's included
+      %p Bootstrap comes complete with compiled CSS, uncompiled, and example templates.
+      %ul
+        %li All original .less files
+        %li Fully compiled and minified CSS
+        %li Complete styleguide documentation
+        %li Example page template (more to come soon)
+
+%section#contact
+  .page-header
+    %h2
+      Contact
+      %small Abba Zaba, you my only friend.
+  .row
+    .span6.columns
+      %h3 History
+      %p In the earlier days of Twitter, engineers used almost any library they were familiar with to meet front-end requirements. Bootstrap began as an answer to the challenges that presented and development quickly accelerated during Twitter’s first Hackweek.
+      %p With the help and feedback of many engineers at Twitter, Bootstrap has grown significantly to encompass not only basic styles, but more elegant and durable front-end design patterns.
+      %p
+        Read more on
+        %a{:href => "https://dev.twitter.com/blog/bootstrap-twitter"} dev.twitter.com ›
+    .span5.columns
+      %h3 Browser support
+      %p Bootstrap is tested and supported in major modern browsers like Chrome, Safari, Internet Explorer, and Firefox.
+      %ul
+        %li Latest Safari
+        %li Latest Google Chrome
+        %li Firefox 4+
+        %li Internet Explorer 7+
+        %li Opera 11
+    .span5.columns
+      %h3 What's included
+      %p Bootstrap comes complete with compiled CSS, uncompiled, and example templates.
+      %ul
+        %li All original .less files
+        %li Fully compiled and minified CSS
+        %li Complete styleguide documentation
+        %li Example page template (more to come soon)
+
+%section#credits
+  .page-header
+    <a href="http://www.flickr.com/photos/seier/3883097562/" target="_blank">"jørn utzon, jeddah stadium,
+    saudi arabia 1967"</a> by <a href="http://www.flickr.com/people/seier/" target="_blank">seier+seier</a>
+    %h2
+      Credits
+      %small The digital pimp hard at work.
+  .row
+    .span6.columns
+      %h3 History
+      %p In the earlier days of Twitter, engineers used almost any library they were familiar with to meet front-end requirements. Bootstrap began as an answer to the challenges that presented and development quickly accelerated during Twitter’s first Hackweek.
+      %p With the help and feedback of many engineers at Twitter, Bootstrap has grown significantly to encompass not only basic styles, but more elegant and durable front-end design patterns.
+      %p
+        Read more on
+        %a{:href => "https://dev.twitter.com/blog/bootstrap-twitter"} dev.twitter.com ›
+    .span5.columns
+      %h3 Browser support
+      %p Bootstrap is tested and supported in major modern browsers like Chrome, Safari, Internet Explorer, and Firefox.
+      %ul
+        %li Latest Safari
+        %li Latest Google Chrome
+        %li Firefox 4+
+        %li Internet Explorer 7+
+        %li Opera 11
+    .span5.columns
+      %h3 What's included
+      %p Bootstrap comes complete with compiled CSS, uncompiled, and example templates.
+      %ul
+        %li All original .less files
+        %li Fully compiled and minified CSS
+        %li Complete styleguide documentation
+        %li Example page template (more to come soon)

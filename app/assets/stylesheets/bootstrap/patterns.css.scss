@@ -18,7 +18,8 @@
   overflow: visible;
 
   // gradient is applied to it's own element because overflow visible is not honored by ie when filter is present
-  .fill {
+  .fill,
+  .topbar-inner {
     background:#222;
     @include vertical-gradient(#333, #222);
     $shadow: 0 1px 3px rgba(0,0,0,.25), inset 0 -1px 0 rgba(0,0,0,.1);
@@ -295,63 +296,104 @@ footer {
 
 // One-liner alert bars
 .alert-message {
-  // TODO: Ask cloudhead how to do this fancy filter elegantly. Less eval is returning strings with quotes ;_;
-  @include vertical-gradient(transparent, rgba(0,0,0,0.15));
-  filter: quote("progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#15000000')");
-  background-color: $grayLighter;
-  margin-bottom: $baseline;
-  padding: 8px 15px;
-  color: #fff;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.3);
-  border-bottom: 1px solid rgba(0,0,0,.3);
-  @include border-radius(4px);
-  p {
+  background-color: #eedc94;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fceec1), to(#eedc94));
+  background-image: -moz-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -ms-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fceec1), color-stop(100%, #eedc94));
+  background-image: -webkit-linear-gradient(top, #fceec1, #eedc94);
+  background-image: -o-linear-gradient(top, #fceec1, #eedc94);
+  background-image: linear-gradient(top, #fceec1, #eedc94);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-color: #eedc94 #eedc94 #e4c652;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  margin-bottom: 18px;
+  padding: 7px 14px;
+  color: #404040;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-width: 1px;
+  border-style: solid;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+  .alert-message p {
+    color: inherit;
+    margin-bottom: 0; }
+    .alert-message p + p {
+      margin-top: 5px; }
+  .alert-message.flash.error {
     color: #fff;
-    margin-bottom: 0;
-    + p {
-      margin-top: 5px;
-    }
-  }
-  &.error {
-    @include vertical-gradient(lighten($red, 30%), lighten($red, 15%));
-    border-bottom-color: lighten($red, 5%);
-  }
-  &.warning {
-    @include vertical-gradient(lighten($yellow, 25%), lighten($yellow, 10%));
-    border-bottom-color: $yellow;
-  }
-  &.success {
-    @include vertical-gradient(lighten($green, 25%), lighten($green, 10%));
-    border-bottom-color: $green;
-  }
-  &.info {
-    @include vertical-gradient(lighten($blue, 25%), lighten($blue, 5%));
-    border-bottom-color: $blue;
-  }
-  .close {
+    background-color: #c43c35;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
+    background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
+    background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ee5f5b), color-stop(100%, #c43c35));
+    background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
+    background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
+    background-image: linear-gradient(top, #ee5f5b, #c43c35);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-color: #c43c35 #c43c35 #882a25;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+  .alert-message.flash.success {
+    color: #fff;
+    background-color: #57a957;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#62c462), to(#57a957));
+    background-image: -moz-linear-gradient(top, #62c462, #57a957);
+    background-image: -ms-linear-gradient(top, #62c462, #57a957);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62c462), color-stop(100%, #57a957));
+    background-image: -webkit-linear-gradient(top, #62c462, #57a957);
+    background-image: -o-linear-gradient(top, #62c462, #57a957);
+    background-image: linear-gradient(top, #62c462, #57a957);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-color: #57a957 #57a957 #3d773d;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+  .alert-message.flash.notice {
+    color: #fff;
+    background-color: #339bb9;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#5bc0de), to(#339bb9));
+    background-image: -moz-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: -ms-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5bc0de), color-stop(100%, #339bb9));
+    background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
+    background-image: linear-gradient(top, #5bc0de, #339bb9);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-color: #339bb9 #339bb9 #22697d;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+  .alert-message .close {
     float: right;
     margin-top: -2px;
     color: #000;
     font-size: 20px;
     font-weight: bold;
-    text-shadow: 0 1px 0 rgba(255,255,255,1);
-    @include opacity(20);
-    &:hover {
+    text-shadow: 0 1px 0 white;
+    filter: alpha(opacity=20);
+    -khtml-opacity: 0.2;
+    -moz-opacity: 0.2;
+    opacity: 0.2; }
+    .alert-message .close:hover {
       text-decoration: none;
-      @include opacity(40);
-    }
-  }
-}
+      filter: alpha(opacity=40);
+      -khtml-opacity: 0.4;
+      -moz-opacity: 0.4;
+      opacity: 0.4; }
 
 // Block-level Alerts
 .block-message {
-  margin-bottom: $baseline;
+  background-image: none;
+  background-color: #FDF5D9;
   padding: 14px;
-  color: $grayDark;
-  color: rgba(0,0,0,.8);
-  *color: $grayDark; /* IE 6-7 */
-  text-shadow: 0 1px 0 rgba(255,255,255,.25);
-  @include border-radius(6px);
+  border-color: #FCEEC1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   p {
     color: $grayDark;
     color: rgba(0,0,0,.8);
@@ -362,27 +404,28 @@ footer {
   ul {
     margin-bottom: 0;
   }
-  strong {
-    display: block;
+  .alert-actions {
+    margin-top: 5px;
   }
   &.error {
-    background: lighten($red, 55%);
-    border: 1px solid lighten($red, 50%);
-  }
-  &.warning {
-    background: lighten($yellow, 35%);
-    border: 1px solid lighten($yellow, 25%)
+    background-color: #FDDFDE;
+    border-color: #FBC7C6;
+    color: #404040;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   }
   &.success {
-    background: lighten($green, 45%);
-    border: 1px solid lighten($green, 35%)
+    background-color: #D1EED1;
+    border-color: #BFE7BF;
+    color: #404040;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   }
-  &.info {
-    background: lighten($blue, 45%);
-    border: 1px solid lighten($blue, 40%);
+  &.notice {
+    background-color: #DDF4FB;
+    border-color: #C6EDF9;
+    color: #404040;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 }
-
 
 // NAVIGATION
 // ----------

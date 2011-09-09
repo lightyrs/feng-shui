@@ -259,3 +259,18 @@ $analog2:           spin($baseColor, -22);
 	  -moz-opacity: $opacity / 100;
 	       opacity: $opacity / 100;
 }
+
+// Custom
+@mixin inline-block {
+	display: -moz-inline-stack;	// ff 2
+	display: inline-block;
+	zoom:1; *display: inline; _height: 15px; // ie 6-7
+}
+
+@mixin highlight {
+  background-color: #FEE9CC;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 2px 5px 1px;
+  @include monospace-font(normal, 14px, 18px);
+  @include border-radius(3px);
+}
