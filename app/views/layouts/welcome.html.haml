@@ -2,7 +2,7 @@
 %html
   %head
     %title Feng Shui
-    = stylesheet_link_tag "bootstrap/bootstrap", "common", "welcome"
+    = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body{:class => body_class.join(' ')}
@@ -11,6 +11,8 @@
       = render "layouts/header"
       = yield
       = render "layouts/footer"
+
+      = render "shared/lightbox"
 
       = render "shared/confirm"
     .message-mask

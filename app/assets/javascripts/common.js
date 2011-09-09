@@ -133,4 +133,21 @@ $(function(){
     e.preventDefault();
   });
 
+  // lightbox behaviors
+  var $lightbox = $("#lightbox");
+  $("body *[data-lightbox]").click(function(e) {
+    var $this = $(this);
+    var source = $($this.data("lightbox"));
+    var title = $this.data("lightbox-title");
+    $lightbox.show().find(".modal-body").html(source.html()).end().find(".modal-header h3").text(title);
+    e.preventDefault();
+  });
+  $lightbox.find("a.close").click(function(e) {
+    $lightbox.fadeOut(275);
+    e.preventDefault();
+  });
+
+  // tooltip behaviors
+  $("body *[data-tooltip]").tipsy({gravity: 's', title: 'data-tooltip'});
+
 });
