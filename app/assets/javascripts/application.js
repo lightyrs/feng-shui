@@ -8,3 +8,4 @@
 //= require jquery_ujs
 //= require_tree .
 //= require vendor/jquery.tipsy.js
+//= require vendor/prettify.js

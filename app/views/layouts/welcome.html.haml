@@ -4,15 +4,25 @@
     %title Feng Shui
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = csrf_meta_tags
   %body{:class => body_class.join(' ')}
+
     = render "layouts/nav"
+
     .container.primary
+
       = render "layouts/header"
+
       = yield
+
       = render "layouts/footer"
 
       = render "shared/lightbox"
 
+      = render "shared/popover"
+
       = render "shared/confirm"
+
     .message-mask

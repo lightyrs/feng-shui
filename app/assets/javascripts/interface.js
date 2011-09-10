@@ -1,5 +1,8 @@
 $(function(){
 
+  // google prettify
+  prettyPrint();
+
   // animated scrolling
   function animate_scroll(id) {
     $("html,body").animate({scrollTop: $("#"+id).offset().top}, "slow");
@@ -54,7 +57,7 @@ $(function(){
   });
 
   // flash message behaviors
-  $("body:not('.message').alert-message.flash").delay(2800).fadeOut('slow');
+  $("body:not('.welcome') .alert-message.flash").delay(2800).fadeOut('slow');
   $('.alert-message.flash a.close').click(function(e){
     $('.alert-message.flash').clearQueue();
     $(this).parent(".flash").fadeOut('slow');
@@ -85,9 +88,10 @@ $(function(){
     return false;
   };
 
+  var $mask = $("div.message-mask");
+
   // Build the custom confirmation dialog
   function custom_confirm(type, message, confirm, cancel, callback) {
-    var $mask = $("div.message-mask");
     var $dialog = $("div.alert-message.block-message");
     var $confirm = $dialog.find(".alert-actions a.btn.confirm");
     var $cancel = $dialog.find(".alert-actions a.btn.cancel");
@@ -139,11 +143,38 @@ $(function(){
     var $this = $(this);
     var source = $($this.data("lightbox"));
     var title = $this.data("lightbox-title");
+    $mask.show();
     $lightbox.show().find(".modal-body").html(source.html()).end().find(".modal-header h3").text(title);
     e.preventDefault();
   });
   $lightbox.find("a.close").click(function(e) {
-    $lightbox.fadeOut(275);
+    $lightbox.fadeOut(200);
+    $mask.fadeOut(200);
+    e.preventDefault();
+  });
+
+  // popover behaviors
+  var $popover = $(".popover-wrapper");
+  $("body *[data-popover]").click(function(e) {
+    var $this = $(this);
+    var source = $($this.data("popover"));
+    var title = $this.data("popover-title");
+    var direction = $this.data("popover-direction");
+    var $contents = $popover.find(".popover");
+
+    $contents.addClass(direction).css({
+      "left" : e.pageX + 15,
+      "top" : e.pageY
+    });
+    if (direction == "left") {
+      $contents.css("margin-left", -$contents.width());
+    } else if (direction == "right") {
+      $contents.css("margin-right", -$contents.width());
+    } else {
+      $contents.addClass("right").css("margin-right", -$contents.width());
+    }
+    $popover.show().find(".content").html(source.html()).end().find("h3.title").text(title);
+    $contents.css("margin-top", -(Math.round($contents.outerHeight() / 2)));
     e.preventDefault();
   });
 

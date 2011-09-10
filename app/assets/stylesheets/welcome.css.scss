@@ -17,3 +17,18 @@ header {
 section {
   padding-top: 60px;
 }
+
+article {
+  &.flash-messages {
+    .well {
+      padding: 19px 19px 5px;
+    }
+  }
+  &.confirmation-dialogs {
+    .well {
+      .btn {
+        margin: 0 35px;
+      }
+    }
+  }
+}

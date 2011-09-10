@@ -97,29 +97,7 @@
         %li Example page template (more to come soon)
 
 %section#examples
-  .page-header
-    %h2
-      Examples
-      %small Abba Zaba, you my only friend.
-  .row
-    %p
-      = succeed '.' do
-        I don't always use tooltips — but when I do, I use
-        = link_to "tipsy", "http://onehackoranother.com/projects/jquery/tipsy/", {:target => "_blank",
-        :"data-tooltip" => "Facebook-style tooltip plugin for jQuery"}
-
-    = link_to "Lightbox Trigger", "#", :"data-lightbox" => ".example", :"data-lightbox-title" => "An Example Lightbox", :class => "btn"
-
-    .example{:style => "display:none"}
-      = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
-
-    - unless flash.blank? or flash.nil?
-      = render "shared/flash", :flash => flash
-
-    = link_to "Confirmation (Error)", "http://google.com", :class => "btn danger", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Error"
-    = link_to "Confirmation (Warning)", "http://google.com", :class => "btn", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Warning"
-    = link_to "Confirmation (Notice)", "http://google.com", :class => "btn notice", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Notice"
-    = link_to "Confirmation (Success)", "http://google.com", :class => "btn success", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Success"
+  = render "examples"
 
 %section#contact
   .page-header
