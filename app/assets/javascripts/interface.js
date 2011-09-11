@@ -99,7 +99,7 @@ $(function(){
     $confirm.text(confirm);
     $cancel.text(cancel);
     $mask.show();
-    $dialog.show().removeClass("notice success warning error").addClass(type.toLowerCase()).find("p").html("").prepend("<strong>" + type + "</strong> " + message);
+    $dialog.show().attr("class", "alert-message block-message " + type.toLowerCase()).find("p").html("").prepend("<strong>" + type + "</strong> " + message);
 
     $confirm.click(function(e){
       callback(message);
@@ -155,6 +155,11 @@ $(function(){
 
   // popover behaviors
   var $popover = $(".popover-wrapper");
+
+  $(".document.visible").bind("click", function() {
+    $(".popover-wrapper").removeClass("open");
+  });
+
   $("body *[data-popover]").click(function(e) {
     var $this = $(this);
     var source = $($this.data("popover"));
@@ -173,9 +178,10 @@ $(function(){
     } else {
       $contents.addClass("right").css("margin-right", -$contents.width());
     }
-    $popover.show().find(".content").html(source.html()).end().find("h3.title").text(title);
+    $popover.find(".content").html(source.html()).end().find("h3.title").text(title);
+    var $show = $popover.addClass("open");
     $contents.css("margin-top", -(Math.round($contents.outerHeight() / 2)));
-    e.preventDefault();
+    return false;
   });
 
   // tooltip behaviors

@@ -9,15 +9,19 @@
     = csrf_meta_tags
   %body{:class => body_class.join(' ')}
 
-    = render "layouts/nav"
+    .document.visible
 
-    .container.primary
+      = render "layouts/nav"
 
-      = render "layouts/header"
+      .container.primary
 
-      = yield
+        = render "layouts/header"
 
-      = render "layouts/footer"
+        = yield
+
+        = render "layouts/footer"
+
+    .document.hidden
 
       = render "shared/lightbox"
 
@@ -25,4 +29,4 @@
 
       = render "shared/confirm"
 
-    .message-mask
+      .message-mask

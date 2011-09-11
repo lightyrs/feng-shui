@@ -4,122 +4,156 @@
     %small Abba Zaba, you my only friend.
 .row
   %article.flash-messages
-    %h3 Flash Messages
-    .well
-      - unless flash.blank? or flash.nil?
-        = render "shared/flash", :flash => flash
+    .row
+      %h3 Flash Messages
+      .well
+        - unless flash.blank? or flash.nil?
+          = render "shared/flash", :flash => flash
 
-    %h5 HTML
-    :plain
-      <pre class="prettyprint linenums">&lt;div class='alert-message flash success'&gt;
-        &lt;a class='close' href='#'&gt;×&lt;/a&gt;
-        &lt;p&gt;
-          &lt;strong&gt;Success&lt;/strong&gt;
-          This is a success flash.
-        &lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class='alert-message flash notice'&gt;
-        &lt;a class='close' href='#'&gt;×&lt;/a&gt;
-        &lt;p&gt;
-          &lt;strong&gt;Notice&lt;/strong&gt;
-          This is a notice flash.
-        &lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class='alert-message flash warning'&gt;
-        &lt;a class='close' href='#'&gt;×&lt;/a&gt;
-        &lt;p&gt;
-          &lt;strong&gt;Warning&lt;/strong&gt;
-          This is a warning flash.
-        &lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class='alert-message flash error'&gt;
-        &lt;a class='close' href='#'&gt;×&lt;/a&gt;
-        &lt;p&gt;
-          &lt;strong&gt;Error&lt;/strong&gt;
-          This is an error flash.
-        &lt;/p&gt;
-      &lt;/div&gt;
-      </pre>
+      :plain
+        <pre class="prettyprint linenums">flash["success"] = "This is a success flash."
+        flash["notice"] = "This is a notice flash."
+        flash["warning"] = "This is a warning flash."
+        flash["error"] = "This is an error flash."
+        </pre>
+    .row
+      %h5 Custom Types
+      %p You can define your own flash message types. Simply target <code>.alert-message.flash.[custom type]</code> in your CSS.
 
-    %h5 JavaScript
-    :plain
-      <pre class="prettyprint linenums">$(".alert-message.flash").delay(2800).fadeOut('slow');
-      $('.alert-message.flash a.close').click(function(e){
-        $('.alert-message.flash').clearQueue();
-        $(this).parent(".flash").fadeOut('slow');
-        e.preventDefault();
-      });
-      </pre>
+      .well
+        .alert-message.flash.apocalypse
+          %a.close{:href => "#"} ×
+          %p
+            %strong Apocalypse
+            This is an apocalypse flash.
+
+      :plain
+        <pre class="prettyprint linenums">flash["apocalypse"] = "This is an apocalypse flash."</pre>
+
+      :plain
+        <pre class="prettyprint linenums">.alert-message.flash.apocalypse {
+          color: #fff;
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+          @include vertical-three-color-gradient($startColor: #777, $midColor: #555, $colorStop: 50%, $endColor: #333);
+        }
+        </pre>
 
   %article.confirmation-dialogs
-    %h3 Confirmation Dialogs
-    .well
-      = link_to "Confirmation <strong>Error</strong>".html_safe, "http://google.com", :class => "btn danger",
-      :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Error"
-      = link_to "Confirmation <strong>Warning</strong>".html_safe, "http://google.com", :class => "btn", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Warning"
-      = link_to "Confirmation <strong>Notice</strong>".html_safe, "http://google.com", :class => "btn notice", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Notice"
-      = link_to "Confirmation <strong>Success</strong>".html_safe, "http://google.com", :class => "btn success", :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Success"
+    .row
+      %h3 Confirmation Dialogs
+      %p Feng Shui overrides the default JavaScript confirmation dialogs that are triggered by <code>:confirm</code>.
 
-    %h5 HTML
-    :plain
-      <pre class="prettyprint linenums">&lt;a href="http://google.com" class="btn danger" data-confirm="Are you sure you want to do that?" data-method="get" data-type="Error"&gt;Confirmation &lt;strong&gt;Error&lt;/strong&gt;&lt;/a&gt;
-      &lt;a href="http://google.com" class="btn" data-confirm="Are you sure you want to do that?" data-method="get" data-type="Warning"&gt;Confirmation &lt;strong&gt;Warning&lt;/strong&gt;&lt;/a&gt;
-      &lt;a href="http://google.com" class="btn notice" data-confirm="Are you sure you want to do that?" data-method="get" data-type="Notice"&gt;Confirmation &lt;strong&gt;Notice&lt;/strong&gt;&lt;/a&gt;
-      &lt;a href="http://google.com" class="btn success" data-confirm="Are you sure you want to do that?" data-method="get" data-type="Success"&gt;Confirmation &lt;strong&gt;Success&lt;/strong&gt;&lt;/a&gt;
-      </pre>
+      .well
+        = link_to "Confirmation <strong>Error</strong>".html_safe, "http://google.com", :class => "btn danger",
+        :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Error"
+        = link_to "Confirmation <strong>Warning</strong>".html_safe, "http://google.com", :class => "btn default",
+        :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Warning"
+        = link_to "Confirmation <strong>Notice</strong>".html_safe, "http://google.com", :class => "btn notice",
+        :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Notice"
+        = link_to "Confirmation <strong>Success</strong>".html_safe, "http://google.com", :class => "btn success",
+        :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Success"
+
+      :plain
+        <pre class="prettyprint linenums">= link_to "Confirmation &lt;strong&gt;Error&lt;/strong&gt;".html_safe, "http://google.com", :class =&gt; "btn danger",
+        :confirm =&gt; "Are you sure you want to do that?", :method =&gt; :get, :'data-type' =&gt; "Error"
+
+        = link_to "Confirmation &lt;strong&gt;Warning&lt;/strong&gt;".html_safe, "http://google.com", :class =&gt; "btn default",
+        :confirm =&gt; "Are you sure you want to do that?", :method =&gt; :get, :'data-type' =&gt; "Warning"
+
+        = link_to "Confirmation &lt;strong&gt;Notice&lt;/strong&gt;".html_safe, "http://google.com", :class =&gt; "btn notice",
+        :confirm =&gt; "Are you sure you want to do that?", :method =&gt; :get, :'data-type' =&gt; "Notice"
+
+        = link_to "Confirmation &lt;strong&gt;Success&lt;/strong&gt;".html_safe, "http://google.com", :class =&gt; "btn success",
+        :confirm =&gt; "Are you sure you want to do that?", :method =&gt; :get, :'data-type' =&gt; "Success"
+        </pre>
+
+    .row
+      %h5 Custom Types
+      .clearfix
+        .span12.columns
+          %p
+            You can define your own confirmation dialog types. Simply target <code>.block-message.[custom type]</code> in your CSS.
+            %br
+            To style the associated button, target <code>.btn.[custom type]</code>.
+
+        .span4.columns
+          .well.aside
+            = link_to "Confirmation <strong>Apocalypse</strong>".html_safe, "http://google.com", :class => "btn apocalypse",
+            :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Apocalypse"
+
+      :plain
+        <pre class="prettyprint linenums">= link_to "Confirmation &lt;strong&gt;Apocalypse&lt;/strong&gt;".html_safe, "http://google.com", :class =&gt; "btn apocalypse",
+        :confirm =&gt; "Are you sure you want to do that?", :method =&gt; :get, :'data-type' =&gt; "Apocalypse"
+        </pre>
+
+      :plain
+        <pre class="prettyprint linenums">.block-message.apocalypse {
+          background-color: #eee;
+          border-color: #e1e1e1;
+        }
+
+        .btn.apocalypse {
+          color: #fff;
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+          @include btnColor(#777, #333);
+        }
+        </pre>
 
   %article.tooltips
-    %h3 Tooltips
-    .well
-      %p
-        = link_to "Marfa", "http://en.wikipedia.org/wiki/Marfa,_Texas", {:target => "_blank",
-          :"data-tooltip" => "Texas"}
-        wolf squid fixie, cardigan organic dreamcatcher readymade retro PBR farm-to-table you probably haven't heard
-        of them stumptown quinoa mlkshk. Cosby sweater craft beer squid irony, high life DIY letterpress butcher.
-        = link_to "Portland", "http://en.wikipedia.org/wiki/Portland,_Oregon", {:target => "_blank",
-          :"data-tooltip" => "Oregon"}
-        gluten-free thundercats brunch, twee yr sartorial art party master cleanse leggings cred.
-        = link_to "Echo Park", "http://en.wikipedia.org/wiki/Echo_Park,_Los_Angeles", {:target => "_blank",
-          :"data-tooltip" => "California"}
-        cosby sweater +1.
+    .row
+      %h3 Tooltips
+      %p Simply provide a <code>:"data-tooltip"</code> attribute on any element to bind a tooltip.
+      .well
+        %p
+          = link_to "Marfa", "http://en.wikipedia.org/wiki/Marfa,_Texas", {:target => "_blank",
+            :"data-tooltip" => "Texas"}
+          wolf squid fixie, cardigan organic dreamcatcher readymade retro PBR farm-to-table you probably haven't heard
+          of them stumptown quinoa mlkshk. Cosby sweater craft beer squid irony, high life DIY letterpress butcher.
+          = link_to "Portland", "http://en.wikipedia.org/wiki/Portland,_Oregon", {:target => "_blank",
+            :"data-tooltip" => "Oregon"}
+          gluten-free thundercats brunch, twee yr sartorial art party master cleanse leggings cred.
+          = link_to "Brooklyn", "http://en.wikipedia.org/wiki/Brooklyn", {:target => "_blank",
+            :"data-tooltip" => "New York"}
+          cosby sweater +1.
 
-    %h5 HTML
-    :plain
-      <pre class="prettyprint linenums">&lt;a href="http://en.wikipedia.org/wiki/Marfa_Texas" data-tooltip="Texas" target="_blank"&gt;Marfa&lt;/a&gt;
-      &lt;a href="http://en.wikipedia.org/wiki/Portland,_Oregon" data-tooltip="Oregon" target="_blank"&gt;Portland&lt;/a&gt;
-      &lt;a href="http://en.wikipedia.org/wiki/Echo_Park,_Los_Angeles" data-tooltip="California" target="_blank"&gt;Echo Park&lt;/a&gt;
-      </pre>
+      :plain
+        <pre class="prettyprint linenums">= link_to "Marfa", "http://en.wikipedia.org/wiki/Marfa,_Texas", {:target => "_blank", :"data-tooltip" => "Texas"}
+        = link_to "Portland", "http://en.wikipedia.org/wiki/Portland,_Oregon", {:target => "_blank", :"data-tooltip" => "Oregon"}
+        = link_to "Brooklyn", "http://en.wikipedia.org/wiki/Brooklyn", {:target => "_blank", :"data-tooltip" => "New York"}
+        </pre>
 
   %article.lightboxes
-    %h3 Lightboxes
-    .well
-      = link_to "Lightbox Trigger", "#", :"data-lightbox" => ".lightbox-content",
-      :"data-lightbox-title" => "An Example Lightbox", :class => "btn"
+    .row
+      %h3 Lightboxes
+      .well
+        = link_to "Lightbox Trigger", "#", :"data-lightbox" => ".lightbox-content",
+        :"data-lightbox-title" => "An Example Lightbox", :class => "btn"
 
-      .lightbox-content{:style => "display:none"}
-        = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
+        .lightbox-content{:style => "display:none"}
+          = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
 
-    %h5 HTML
-    :plain
-      <pre class="prettyprint linenums">&lt;a href="#" class="btn" data-lightbox-title="An Example Lightbox" data-lightbox=".lightbox-content"&gt;Lightbox Trigger&lt;/a&gt;
-      &lt;div class="lightbox-content" style="display:none"&gt;
-        &lt;img alt="Ruby on Rails" src="/assets/rails.png" /&gt;
-      &lt;/div&gt;
-      </pre>
+      :plain
+        <pre class="prettyprint linenums">= link_to "Lightbox Trigger", "#", :"data-lightbox" => ".lightbox-content",
+        :"data-lightbox-title" => "An Example Lightbox", :class => "btn"
+
+        .lightbox-content{:style => "display:none"}
+          = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
+        </pre>
 
   %article.popovers
-    %h3 Popovers
-    .well
-      = link_to "Popover Trigger", "#", :"data-popover" => ".popover-content",
-      :"data-popover-title" => "An Example Popover", :"data-popover-direction" => "right", :class => "btn"
+    .row
+      %h3 Popovers
+      .well
+        = link_to "Popover Trigger", "#", :"data-popover" => ".popover-content",
+        :"data-popover-title" => "An Example Popover", :"data-popover-direction" => "right", :class => "btn"
 
-      .popover-content{:style => "display:none"}
-        %p A popover is like a giant tooltip that can be used to guide users through your application.
+        .popover-content{:style => "display:none"}
+          %p A popover is like a giant tooltip that can be used to guide users through your application.
 
-    %h5 HTML
-    :plain
-      <pre class="prettyprint linenums">&lt;a href="#" class="btn" data-popover-direction="right" data-popover-title="An Example Popover" data-popover=".popover-content"&gt;Popover Trigger&lt;/a&gt;
-      &lt;div class='popover-content' style='display:none'&gt;
-        &lt;p&gt;A popover is like a giant tooltip that can be used to guide users through your application.&lt;/p&gt;
-      &lt;/div&gt;
-      </pre>
+      :plain
+        <pre class="prettyprint linenums">= link_to "Popover Trigger", "#", :"data-popover" => ".popover-content",
+        :"data-popover-title" => "An Example Popover", :"data-popover-direction" => "right", :class => "btn"
+
+        .popover-content{:style => "display:none"}
+          %p A popover is like a giant tooltip that can be used to guide users through your application.
+        </pre>
