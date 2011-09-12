@@ -9,27 +9,23 @@
     = csrf_meta_tags
   %body{:class => body_class.join(' ')}
 
-    .document.visible
+    = render "layouts/nav"
 
-      = render "layouts/nav"
+    .container.primary
 
-      .container.primary
+      - unless flash.blank? or flash.nil?
+        = render "shared/flash", :flash => flash
 
-        - unless flash.blank? or flash.nil?
-          = render "shared/flash", :flash => flash
+      = render "layouts/header"
 
-        = render "layouts/header"
+      = yield
 
-        = yield
+      = render "layouts/footer"
 
-        = render "layouts/footer"
+    = render "shared/lightbox"
 
-    .document.hidden
+    = render "shared/popover"
 
-      = render "shared/lightbox"
+    = render "shared/confirm"
 
-      = render "shared/popover"
-
-      = render "shared/confirm"
-
-      .message-mask
+    .message-mask

@@ -1,5 +1,17 @@
 @import "preboot.css.scss";
 
+@mixin btnColor($primaryColor, $secondaryColor) {
+  @include vertical-gradient($primaryColor, $secondaryColor);
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  border-color: $secondaryColor $secondaryColor darken($secondaryColor, 15%);
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fade-in(rgba(0,0,0,.1), .15);
+}
+
+.btn.warning {
+  @include btnColor(#fceec1, #eedc94);
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+
 .block-message {
   width: 450px;
   position: fixed;
@@ -25,6 +37,14 @@
   &.open {
     display: block;
   }
+
+  .popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9125;
+    padding: 5px;
+  }
 }
 
 .message-mask {
@@ -37,4 +57,16 @@
   @include opacity(60);
   width: 100%;
   height: 100%;
+}
+
+.tab-group,
+.pill-group {
+  section, .section {
+    display: none;
+    padding: 0;
+
+    &.active {
+      display: block;
+    }
+  }
 }

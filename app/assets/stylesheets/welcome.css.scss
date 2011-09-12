@@ -16,10 +16,6 @@ header {
   background: transparent url(/assets/feng-shui.jpg) center center no-repeat;
 }
 
-section {
-  padding-top: 60px;
-}
-
 article {
   &.flash-messages {
     .well {
@@ -28,25 +24,27 @@ article {
   }
   &.confirmation-dialogs {
     .well {
+      text-align: center;
+
       .btn {
         margin: 0 35px;
       }
       &.aside {
         .btn {
-          margin: 0 1px;
+          margin: 0 auto;
         }
       }
     }
   }
 }
 
-.alert-message.flash.apocalypse {
+.alert-message.flash.panic {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   @include vertical-three-color-gradient($startColor: #777, $midColor: #555, $colorStop: 50%, $endColor: #333);
 }
 
-.block-message.apocalypse {
+.block-message.panic {
   background-color: #eee;
   border-color: #e1e1e1;
 }
@@ -58,7 +56,7 @@ article {
   border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fade-in(rgba(0,0,0,.1), .15);
 }
 
-.btn.apocalypse {
+.btn.panic {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   @include btnColor(#777, #333);

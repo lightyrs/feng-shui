@@ -21,17 +21,17 @@
       %p You can define your own flash message types. Simply target <code>.alert-message.flash.[custom type]</code> in your CSS.
 
       .well
-        .alert-message.flash.apocalypse
+        .alert-message.flash.panic
           %a.close{:href => "#"} ×
           %p
-            %strong Apocalypse
-            This is an apocalypse flash.
+            %strong Panic
+            This is a panic flash.
 
       :plain
-        <pre class="prettyprint linenums">flash["apocalypse"] = "This is an apocalypse flash."</pre>
+        <pre class="prettyprint linenums">flash["panic"] = "This is a panic flash."</pre>
 
       :plain
-        <pre class="prettyprint linenums">.alert-message.flash.apocalypse {
+        <pre class="prettyprint linenums">.alert-message.flash.panic {
           color: #fff;
           text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
           @include vertical-three-color-gradient($startColor: #777, $midColor: #555, $colorStop: 50%, $endColor: #333);
@@ -46,7 +46,7 @@
       .well
         = link_to "Confirmation <strong>Error</strong>".html_safe, "http://google.com", :class => "btn danger",
         :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Error"
-        = link_to "Confirmation <strong>Warning</strong>".html_safe, "http://google.com", :class => "btn default",
+        = link_to "Confirmation <strong>Warning</strong>".html_safe, "http://google.com", :class => "btn warning",
         :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Warning"
         = link_to "Confirmation <strong>Notice</strong>".html_safe, "http://google.com", :class => "btn notice",
         :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Notice"
@@ -78,21 +78,21 @@
 
         .span4.columns
           .well.aside
-            = link_to "Confirmation <strong>Apocalypse</strong>".html_safe, "http://google.com", :class => "btn apocalypse",
-            :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Apocalypse"
+            = link_to "Confirmation <strong>Panic</strong>".html_safe, "http://google.com", :class => "btn panic",
+            :confirm => "Are you sure you want to do that?", :method => :get, :'data-type' => "Panic"
 
       :plain
-        <pre class="prettyprint linenums">= link_to "Confirmation &lt;strong&gt;Apocalypse&lt;/strong&gt;".html_safe, "http://google.com", :class =&gt; "btn apocalypse",
-        :confirm =&gt; "Are you sure you want to do that?", :method =&gt; :get, :'data-type' =&gt; "Apocalypse"
+        <pre class="prettyprint linenums">= link_to "Confirmation &lt;strong&gt;Panic&lt;/strong&gt;".html_safe, "http://google.com", :class =&gt; "btn panic",
+        :confirm =&gt; "Are you sure you want to do that?", :method =&gt; :get, :'data-type' =&gt; "Panic"
         </pre>
 
       :plain
-        <pre class="prettyprint linenums">.block-message.apocalypse {
+        <pre class="prettyprint linenums">.block-message.panic {
           background-color: #eee;
           border-color: #e1e1e1;
         }
 
-        .btn.apocalypse {
+        .btn.panic {
           color: #fff;
           text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
           @include btnColor(#777, #333);
@@ -156,4 +156,74 @@
 
         .popover-content{:style => "display:none"}
           %p A popover is like a giant tooltip that can be used to guide users through your application.
+        </pre>
+
+  %article.tab-groups
+    .row
+      %h3 Tabs
+      .tab-group
+        = tab_group "Tab 1" => "#tab_1", "Tab 2" => "#tab_2",
+        "Tab 3" => "#tab_3", "Tab 4" => "#tab_4", "Tab 5" => "#tab_5"
+
+        #tab_1.section.active
+          %p Tab 1
+        %section#tab_2
+          %p Tab 2
+        #tab_3.section
+          %p Tab 3
+        #tab_4.section
+          %p Tab 4
+        %section#tab_5
+          %p Tab 5
+
+      :plain
+        <pre class="prettyprint linenums">.tab-group
+          = tab_group "Tab 1" => "#tab_1", "Tab 2" => "#tab_2",
+          "Tab 3" => "#tab_3", "Tab 4" => "#tab_4", "Tab 5" => "#tab_5"
+
+          #tab_1.section.active
+            %p Tab 1
+          %section#tab_2
+            %p Tab 2
+          #tab_3.section
+            %p Tab 3
+          #tab_4.section
+            %p Tab 4
+          %section#tab_5
+            %p Tab 5
+        </pre>
+
+  %article.pill-groups
+    .row
+      %h3 Pills
+      .pill-group
+        = pill_group "Pill 1" => "#pill_1", "Pill 2" => "#pill_2",
+        "Pill 3" => "#pill_3", "Pill 4" => "#pill_4", "Pill 5" => "#pill_5"
+
+        #pill_1.section.active
+          %p Pill 1
+        %section#pill_2
+          %p Pill 2
+        #pill_3.section
+          %p Pill 3
+        #pill_4.section
+          %p Pill 4
+        %section#pill_5
+          %p Pill 5
+
+      :plain
+        <pre class="prettyprint linenums">.tab-group
+          = tab_group "Pill 1" => "#pill_1", "Pill 2" => "#pill_2",
+          "Pill 3" => "#pill_3", "Pill 4" => "#pill_4", "Pill 5" => "#pill_5"
+
+          #pill_1.section.active
+            %p Pill 1
+          %section#pill_2
+            %p Pill 2
+          #pill_3.section
+            %p Pill 3
+          #pill_4.section
+            %p Pill 4
+          %section#pill_5
+            %p Pill 5
         </pre>
