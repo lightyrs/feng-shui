@@ -12,6 +12,9 @@ end
 gem 'haml-rails'
 gem 'jquery-rails'
 
+gem 'json'
+gem 'will_paginate', '~> 3.0.0'
+
 group :development do
   gem 'powder'
   gem 'hpricot'

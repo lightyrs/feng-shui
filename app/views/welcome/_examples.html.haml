@@ -6,16 +6,12 @@
   %article.flash-messages
     .row
       %h3 Flash Messages
+      %p Feng Shui provides basic styles for commonly used flash message types. Simply include the <code>flash_messages</code> helper in your layout.
       .well
-        - unless flash.blank? or flash.nil?
-          = render "shared/flash", :flash => flash
+        = flash_messages
 
       :plain
-        <pre class="prettyprint linenums">flash["success"] = "This is a success flash."
-        flash["notice"] = "This is a notice flash."
-        flash["warning"] = "This is a warning flash."
-        flash["error"] = "This is an error flash."
-        </pre>
+        <pre class="prettyprint linenums">= flash_messages</pre>
     .row
       %h5 Custom Types
       %p You can define your own flash message types. Simply target <code>.alert-message.flash.[custom type]</code> in your CSS.
@@ -122,27 +118,21 @@
         = link_to "Brooklyn", "http://en.wikipedia.org/wiki/Brooklyn", {:target => "_blank", :"data-tooltip" => "New York"}
         </pre>
 
-  %article.lightboxes
-    .row
-      %h3 Lightboxes
-      .well
-        = link_to "Lightbox Trigger", "#", :"data-lightbox" => ".lightbox-content",
-        :"data-lightbox-title" => "An Example Lightbox", :class => "btn"
-
-        .lightbox-content{:style => "display:none"}
-          = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
-
-      :plain
-        <pre class="prettyprint linenums">= link_to "Lightbox Trigger", "#", :"data-lightbox" => ".lightbox-content",
-        :"data-lightbox-title" => "An Example Lightbox", :class => "btn"
-
-        .lightbox-content{:style => "display:none"}
-          = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
-        </pre>
-
   %article.popovers
     .row
       %h3 Popovers
+      %p Bind a popover to any element by including the following data attributes:
+      %ul.unstyled
+        %p <strong>Required</strong>
+        %li
+          <code>:"data-popover"</code> takes a CSS selector that points to an element
+          containing the desired popover content.
+        %br
+        %p <strong>Optional</strong>
+        %li
+          <code>:"data-popover-title"</code> takes the desired popover title as a string.
+        %li
+          <code>:"data-popover-direction"</code> takes the desired pointer direction ("left" or "right").
       .well
         = link_to "Popover Trigger", "#", :"data-popover" => ".popover-content",
         :"data-popover-title" => "An Example Popover", :"data-popover-direction" => "right", :class => "btn"
@@ -158,12 +148,77 @@
           %p A popover is like a giant tooltip that can be used to guide users through your application.
         </pre>
 
+  %article.lightboxes
+    .row
+      %h3 Lightboxes
+      %p Bind a lightbox to any element by including the following data attributes:
+      %ul.unstyled
+        %p <strong>Required</strong>
+        %li
+          <code>:"data-lightbox"</code> takes a CSS selector that points to an element
+          containing the desired lightbox content.
+        %br
+        %p <strong>Optional</strong>
+        %li
+          <code>:"data-lightbox-title"</code> takes the desired lightbox title as a string.
+        %li
+          <code>:"data-lightbox-primary"</code> takes a JSON hash containing the primary button's display text and
+          click function.
+        %li
+          <code>:"data-lightbox-secondary"</code> takes a JSON hash containing the secondary button's display text and
+          callback function.
+      .well
+        = link_to "Lightbox Trigger", "#", :class => "btn",
+        :"data-lightbox" => ".lightbox-content",
+        :"data-lightbox-title" => "An Example Lightbox",
+        :"data-lightbox-primary" => '{ "text" : "Primary Button", "callback" : "lightbox_primary_callback()" }',
+        :"data-lightbox-secondary" => '{ "text" : "Secondary Button", "callback" : "lightbox_secondary_callback()" }'
+
+
+        .lightbox-content{:style => "display:none"}
+          = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
+
+      :plain
+        <pre class="prettyprint linenums">= link_to "Lightbox Trigger", "#", :class => "btn",
+        :"data-lightbox" => ".lightbox-content",
+        :"data-lightbox-title" => "An Example Lightbox",
+        :"data-lightbox-primary" => '{ "text" : "Primary Button", "callback" : "lightbox_primary_callback()" }',
+        :"data-lightbox-secondary" => '{ "text" : "Secondary Button", "callback" : "lightbox_secondary_callback()" }'
+
+        .lightbox-content{:style => "display:none"}
+          = image_tag "/assets/rails.png", :alt => "Ruby on Rails"
+        </pre>
+
+      :javascript
+        function lightbox_primary_callback() {
+          alert("Primary Callback");
+        }
+        function lightbox_secondary_callback() {
+          alert("Secondary Callback");
+        }
+
   %article.tab-groups
     .row
       %h3 Tabs
-      .tab-group
-        = tab_group "Tab 1" => "#tab_1", "Tab 2" => "#tab_2",
-        "Tab 3" => "#tab_3", "Tab 4" => "#tab_4", "Tab 5" => "#tab_5"
+      %p Create a tab group by passing a hash of display names and CSS selectors to the <code>tab_group</code> helper.
+      %p Feng Shui will look for <code>section</code> and <code>.section</code> elements with matching CSS selectors.
+      %br
+
+      = tab_group "One" => "#tab_1", "Two" => "#tab_2", "Three" => "#tab_3", "Four" => "#tab_4", "Five" => "#tab_5"
+
+      #tab_1.section.active
+        %p Tab 1
+      %section#tab_2
+        %p Tab 2
+      #tab_3.section
+        %p Tab 3
+      #tab_4.section
+        %p Tab 4
+      %section#tab_5
+        %p Tab 5
+
+      :plain
+        <pre class="prettyprint linenums">= tab_group "One" => "#tab_1", "Two" => "#tab_2", "Three" => "#tab_3", "Four" => "#tab_4", "Five" => "#tab_5"
 
         #tab_1.section.active
           %p Tab 1
@@ -175,30 +230,30 @@
           %p Tab 4
         %section#tab_5
           %p Tab 5
-
-      :plain
-        <pre class="prettyprint linenums">.tab-group
-          = tab_group "Tab 1" => "#tab_1", "Tab 2" => "#tab_2",
-          "Tab 3" => "#tab_3", "Tab 4" => "#tab_4", "Tab 5" => "#tab_5"
-
-          #tab_1.section.active
-            %p Tab 1
-          %section#tab_2
-            %p Tab 2
-          #tab_3.section
-            %p Tab 3
-          #tab_4.section
-            %p Tab 4
-          %section#tab_5
-            %p Tab 5
         </pre>
 
   %article.pill-groups
     .row
       %h3 Pills
-      .pill-group
-        = pill_group "Pill 1" => "#pill_1", "Pill 2" => "#pill_2",
-        "Pill 3" => "#pill_3", "Pill 4" => "#pill_4", "Pill 5" => "#pill_5"
+      %p Create a pill group by passing a hash of display names and CSS selectors to the <code>pill_group</code> helper.
+      %p Feng Shui will look for <code>section</code> and <code>.section</code> elements with matching CSS selectors.
+      %br
+
+      = pill_group "One" => "#pill_1", "Two" => "#pill_2", "Three" => "#pill_3", "Four" => "#pill_4", "Five" => "#pill_5"
+
+      #pill_1.section.active
+        %p Pill 1
+      %section#pill_2
+        %p Pill 2
+      #pill_3.section
+        %p Pill 3
+      #pill_4.section
+        %p Pill 4
+      %section#pill_5
+        %p Pill 5
+
+      :plain
+        <pre class="prettyprint linenums">= pill_group "One" => "#pill_1", "Two" => "#pill_2", "Three" => "#pill_3", "Four" => "#pill_4", "Five" => "#pill_5"
 
         #pill_1.section.active
           %p Pill 1
@@ -210,20 +265,4 @@
           %p Pill 4
         %section#pill_5
           %p Pill 5
-
-      :plain
-        <pre class="prettyprint linenums">.tab-group
-          = tab_group "Pill 1" => "#pill_1", "Pill 2" => "#pill_2",
-          "Pill 3" => "#pill_3", "Pill 4" => "#pill_4", "Pill 5" => "#pill_5"
-
-          #pill_1.section.active
-            %p Pill 1
-          %section#pill_2
-            %p Pill 2
-          #pill_3.section
-            %p Pill 3
-          #pill_4.section
-            %p Pill 4
-          %section#pill_5
-            %p Pill 5
         </pre>

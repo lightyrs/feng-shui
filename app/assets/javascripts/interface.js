@@ -150,12 +150,15 @@ $(function(){
 
     tab_behaviors : function() {
       // tab group behaviors
+      var current_tab_section = $('ul.tabs li.active a').data('tab');
+      $(current_tab_section).show();
+
       $('ul.tabs li a').click(function(e){
         var current_section = $('ul.tabs li.active a').data('tab');
         var next_section = $(this).data('tab');
 
-        $(current_section).removeClass('active');
-        $(next_section).addClass('active');
+        $(current_section).removeClass('active').hide();
+        $(next_section).addClass('active').show();
 
         $(this).parent('ul.tabs li').siblings('.active').removeClass('active');
         $(this).parent('li').addClass('active');
@@ -166,12 +169,15 @@ $(function(){
 
     pill_behaviors : function() {
       // pill group behaviors
+      var current_pill_section = $('ul.pills li.active a').data('pill');
+      $(current_pill_section).show();
+
       $('ul.pills li a').click(function(e){
         var current_section = $('ul.pills li.active a').data('pill');
         var next_section = $(this).data('pill');
 
-        $(current_section).removeClass('active');
-        $(next_section).addClass('active');
+        $(current_section).removeClass('active').hide();
+        $(next_section).addClass('active').show();
 
         $(this).parent('ul.pills li').siblings('.active').removeClass('active');
         $(this).parent('li').addClass('active');
@@ -186,8 +192,20 @@ $(function(){
         var $this = $(this);
         var source = $($this.data("lightbox"));
         var title = $this.data("lightbox-title");
+        var primary = $this.data("lightbox-primary");
+        var secondary = $this.data("lightbox-secondary");
         FengShui.mask.show();
-        FengShui.lightbox.show().find(".modal-body").html(source.html()).end().find(".modal-header h3").text(title);
+        FengShui.lightbox.show()
+            .find(".modal-body").html(source.html())
+            .end().find(".modal-header h3").text(title)
+            .end().find(".modal-footer a.primary").unbind("click").bind("click", function(e){
+              eval(primary.callback);
+              e.preventDefault();
+            }).text(primary.text)
+            .end().find(".modal-footer a.secondary").unbind("click").bind("click", function(e){
+              eval(secondary.callback);
+              e.preventDefault();
+            }).text(secondary.text);
         e.preventDefault();
       });
 

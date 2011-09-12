@@ -36,6 +36,30 @@ article {
       }
     }
   }
+  &.lightboxes {
+    ul li {
+      line-height: 24px;
+    }
+  }
+  &.popovers {
+    ul li {
+      line-height: 24px;
+    }
+  }
+  &.tab-groups {
+    section,
+    .section {
+      display: none;
+      padding: 0;
+    }
+  }
+  &.pill-groups {
+    section,
+    .section {
+      display: none;
+      padding: 0;
+    }
+  }
 }
 
 .alert-message.flash.panic {

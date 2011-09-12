@@ -13,8 +13,7 @@
 
     .container.primary
 
-      - unless flash.blank? or flash.nil?
-        = render "shared/flash", :flash => flash
+      = flash_messages
 
       = render "layouts/header"
 

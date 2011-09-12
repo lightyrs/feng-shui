@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
 
   def body_class
@@ -10,6 +11,19 @@ module ApplicationHelper
 
   def subtitle
     @subtitle ||= ""
+  end
+
+  def flash_messages
+    unless flash.blank? or flash.nil?
+      output = ""
+      flash.each do |name, msg|
+        output += "<div class='alert-message flash #{name}'>
+          <a class='close' href='#'> ×</a>
+          <p><strong>#{name.capitalize}</strong> #{msg}</p>
+        </div>"
+      end
+      raw output
+    end
   end
 
   def tab_group(sections = {})

@@ -58,15 +58,3 @@
   width: 100%;
   height: 100%;
 }
-
-.tab-group,
-.pill-group {
-  section, .section {
-    display: none;
-    padding: 0;
-
-    &.active {
-      display: block;
-    }
-  }
-}
